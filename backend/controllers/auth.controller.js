@@ -68,7 +68,7 @@ export const login = async (req,res) => {
         generateTokenAndSetCookie(user._id,res);
 
         res.status(200).json({
-            _id: user._id,
+            _id: user._id,//sample
                 fullname: user.fullname,
                 username: user.username,
                 profilePic: user.profilePic
