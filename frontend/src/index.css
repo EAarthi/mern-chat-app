@@ -3,26 +3,51 @@
 @tailwind utilities;
 
 body{
-   
-    background:url("/backg.png");
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)),url("/bg.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    
 }
 
-/*dark mode looking scrollbar */
+/* dark mode looking scrollbar */
+
 ::-webkit-scrollbar{
     width: 8px;
 }
+
 ::-webkit-scrollbar-track{
     background: #555;
-    
 }
+
 ::-webkit-scrollbar-thumb{
     background: #121212;
     border-radius: 5px;
 }
+
 ::-webkit-scrollbar-thumb:hover{
     background: #242424;
+}
+
+/* Pop Animation for realtime chat */
+.pop {
+    animation: pop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+    transform-origin: center;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.3);
+    }
+    50% {
+        transform: scale(0.8);
+    }
+    75% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }

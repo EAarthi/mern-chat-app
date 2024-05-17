@@ -3,9 +3,8 @@ export function extractTime(dateString){
     const hours = padZero(date.getHours());
     const minutes = padZero(date.getMinutes());
     return `${hours}:${minutes}`;
-
 }
-
+// helper function
 function padZero(number){
-    return number.toString().padStart(2,"0");
+    return number.toString().padStart(2, '0');
 }
