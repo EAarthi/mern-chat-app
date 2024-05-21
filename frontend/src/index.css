@@ -2,41 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url("/bg.png");
+body{
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)),url("/bg.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    color: white;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
 }
 
-/* Dark mode looking scrollbar */
-::-webkit-scrollbar {
+/* dark mode looking scrollbar */
+
+::-webkit-scrollbar{
     width: 8px;
 }
 
-::-webkit-scrollbar-track {
+::-webkit-scrollbar-track{
     background: #555;
 }
 
-::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb{
     background: #121212;
     border-radius: 5px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover{
     background: #242424;
 }
 
-/* Pop Animation for real-time chat */
+/* Pop Animation for realtime chat */
 .pop {
     animation: pop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
     transform-origin: center;
@@ -57,42 +49,5 @@ body {
     }
     100% {
         transform: scale(1);
-    }
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    body {
-        background-size: auto;
-        background-position: top center;
-        padding: 20px;
-    }
-
-    /* Adjust scrollbar width for mobile */
-    ::-webkit-scrollbar {
-        width: 6px;
-    }
-
-    /* Ensure pop animation scales well on smaller screens */
-    .pop {
-        animation: pop 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
-    }
-}
-
-/* Further adjustments for very small devices */
-@media (max-width: 480px) {
-    body {
-        background-size: cover;
-        padding: 10px;
-    }
-
-    /* Further reduce scrollbar width if needed */
-    ::-webkit-scrollbar {
-        width: 4px;
-    }
-
-    /* Further tweak animation duration if needed */
-    .pop {
-        animation: pop 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
     }
 }
