@@ -15,7 +15,7 @@ const useListenMessages = () => {
         setMessages([...messages,newMessage]);
 
          // add the newMessage to the messages array only if it is sent by the selectedConversation user id
-        if (useConversation?._id === newMessage.senderId) {
+        if (selectedConversation?._id === newMessage.senderId) {
           newMessage.shouldShake = true;
           const sound = new Audio(notification);
           sound.play();
