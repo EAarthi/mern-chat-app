@@ -9,20 +9,14 @@ const useListenMessages = () => {
 
    useEffect(() => {
     socket?.on("newMessage",(newMessage) => {
-        newMessage.shouldPop = true;
-        const sound = new Audio(notification);
-        sound.play();
-        setMessages([...messages,newMessage]);
-
          // add the newMessage to the messages array only if it is sent by the selectedConversation user id
-        if (selectedConversation?._id === newMessage.senderId) {
-          newMessage.shouldShake = true;
+         if (selectedConversation?._id === newMessage.senderId) {
+          newMessage.shouldPop = true;
           const sound = new Audio(notification);
           sound.play();
           setMessages([...messages, newMessage]);
       }
   });
-
 
     return() => socket.off("newMessage")
    },[socket,setMessages,messages])
