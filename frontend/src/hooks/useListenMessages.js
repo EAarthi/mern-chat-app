@@ -8,19 +8,31 @@ const useListenMessages = () => {
   const { messages, setMessages, selectedConversation } = useConversation();
 
   useEffect(() => {
+    console.log("Effect is running");
+    console.log("Socket: ", socket);
+    console.log("Selected Conversation: ", selectedConversation);
+
     const handleMessage = (newMessage) => {
+      console.log("New message received: ", newMessage);
       if (selectedConversation?._id === newMessage.senderId) {
+        console.log("Message is from the selected conversation");
         newMessage.shouldPop = true;
         const sound = new Audio(notification);
         sound.play();
         setMessages((prevMessages) => [...prevMessages, newMessage]);
+      } else {
+        console.log("Message is not from the selected conversation");
       }
     };
 
-    socket?.on("newMessage", handleMessage);
+    if (socket) {
+      socket.on("newMessage", handleMessage);
+    }
 
     return () => {
-      socket?.off("newMessage", handleMessage);
+      if (socket) {
+        socket.off("newMessage", handleMessage);
+      }
     };
   }, [socket, setMessages, selectedConversation]);
 
