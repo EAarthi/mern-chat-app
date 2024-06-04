@@ -8,12 +8,12 @@ const useListenMessages = () => {
   const { messages, setMessages, selectedConversation } = useConversation();
 
   useEffect(() => {
-    console.log("Effect is running");
-    console.log("Socket: ", socket);
-    console.log("Selected Conversation: ", selectedConversation);
+    console.log("useListenMessages effect running");
+    console.log("Socket:", socket);
+    console.log("Selected Conversation:", selectedConversation);
 
     const handleMessage = (newMessage) => {
-      console.log("New message received: ", newMessage);
+      console.log("New message received:", newMessage);
       if (selectedConversation?._id === newMessage.senderId) {
         console.log("Message is from the selected conversation");
         newMessage.shouldPop = true;

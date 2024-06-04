@@ -16,15 +16,15 @@ export const SocketContextProvider = ({ children }) => {
   const { authUser } = useAuthContext();
   useEffect(() => {
     if (authUser) {
-      const socket = io("https://mern-chat-app-cpcr.onrender.com", {
+      const newSocket = io("https://mern-chat-app-cpcr.onrender.com", {
         query: {
           userId: authUser._id,
         },
       });
-      setSocket(socket);
+      setSocket(newSocket);
 
       // socket.on is used to listen to the events. can be used on both client and the server side.
-      socket.on("getOnlineUsers", (users) => {
+      newSocket.on("getOnlineUsers", (users) => {
         setOnlineUsers(users);
       });
 
