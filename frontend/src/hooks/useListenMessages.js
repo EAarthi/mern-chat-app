@@ -1,26 +1,30 @@
 import { useEffect } from "react";
-import { useSocketContext } from "../context/SocketContext"
-import useConversation from '../zustand/useConversation'
-import notification from '../assets/sounds/notification.mp3'
+import { useSocketContext } from "../context/SocketContext";
+import useConversation from '../zustand/useConversation';
+import notification from '../assets/sounds/notification.mp3';
 
 const useListenMessages = () => {
-   const {socket} = useSocketContext();
-   const {messages,setMessages} = useConversation();
+  const { socket } = useSocketContext();
+  const { messages, setMessages, selectedConversation } = useConversation();
 
-   useEffect(() => {
-    socket?.on("newMessage",(newMessage) => {
-         // add the newMessage to the messages array only if it is sent by the selectedConversation user id
-         if (selectedConversation?._id === newMessage.senderId) {
-          newMessage.shouldPop = true;
-          const sound = new Audio(notification);
-          sound.play();
-          setMessages([...messages, newMessage]);
+  useEffect(() => {
+    const handleMessage = (newMessage) => {
+      if (selectedConversation?._id === newMessage.senderId) {
+        newMessage.shouldPop = true;
+        const sound = new Audio(notification);
+        sound.play();
+        setMessages((prevMessages) => [...prevMessages, newMessage]);
       }
-  });
+    };
 
-    return() => socket.off("newMessage")
-   },[socket,setMessages,messages])
- }
- 
- export default useListenMessages
- 
+    socket?.on("newMessage", handleMessage);
+
+    return () => {
+      socket?.off("newMessage", handleMessage);
+    };
+  }, [socket, setMessages, selectedConversation]);
+
+  return null;
+};
+
+export default useListenMessages;
